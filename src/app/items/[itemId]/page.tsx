@@ -32,7 +32,6 @@ export default function Page({ params }: { params: { itemId: number } }) {
     const deleteTodoMutation = useMutation({
         mutationFn: () => deleteTodo("ppinppini", itemId),
         onSuccess: () => {
-            alert("투두 삭제 완료!");
             router.push("/");
         },
     });
@@ -49,7 +48,6 @@ export default function Page({ params }: { params: { itemId: number } }) {
             await queryClient.invalidateQueries();
             await todoQuery.refetch();
             router.push(`/`);
-            alert("수정 완료!");
         },
         onError: () => alert("수정 실패!"),
     });

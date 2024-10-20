@@ -40,11 +40,14 @@ export const TodoEditor = () => {
         <>
             <div className="flex">
                 <input
-                    onKeyDown={(e) => {
-                        if (e.key == "Enter") {
+                   onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault(); // 기본 동작 방지
+                        if (todo.trim()) {  // todo가 비어있지 않은지 확인
                             createTodoMutation.mutate();
                         }
-                    }}
+                    }
+                }}
                     value={todo}
                     onChange={(e) => setTodo(e.target.value)}
                     className="flex-1 mr-5 shadow shadow-black border-2 border-r-4 border-b-4 bg-[#F1F5F9] border-black rounded-3xl px-4 py-2 "
