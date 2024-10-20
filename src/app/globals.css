@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    font-family: var(--font-nanumSqaure-B);
+    background-color: var(--background);
+    color: var(--foreground);
+}
