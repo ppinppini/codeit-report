@@ -7,7 +7,9 @@ npm install
 npm run dev
 
 ```
+## 배포링크 
 
+https://codeit-report-2xya3vlnp-ppin-ppin-is-projects.vercel.app/
 ## 기술 스택
 - Next.JS (14버전)
 - TypeScript
@@ -50,6 +52,4 @@ https://github.com/user-attachments/assets/323f3eb1-7e0e-40eb-aa04-ca3820a69017
 
 
 
-## 배포링크 
 
-https://codeit-report-2xya3vlnp-ppin-ppin-is-projects.vercel.app/
