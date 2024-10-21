@@ -18,8 +18,6 @@ https://github.com/user-attachments/assets/784fef8c-76a7-43fc-9276-f0292c84e8a4
 
 
 ## 상세 페이지
-# 상세 페이지 들어가기
-https://github.com/user-attachm
 
 # 할 일 수정 하기
 
