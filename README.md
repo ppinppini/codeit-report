@@ -9,7 +9,7 @@ npm run dev
 ```
 ## 배포링크 
 
-https://codeit-report-2xya3vlnp-ppin-ppin-is-projects.vercel.app/
+[[https://codeit-report-2xya3vlnp-ppin-ppin-is-projects.vercel.app/](https://codeit-report.vercel.app/)](https://codeit-report.vercel.app/)
 ## 기술 스택
 - Next.JS (14버전)
 - TypeScript
