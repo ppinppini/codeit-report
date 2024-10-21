@@ -1,4 +1,5 @@
 ## 시작 방법
+- **npm** 으로 필요한 라이브러리를 설치 할 수 있습니다.
 
 ```bash
 npm install
@@ -7,7 +8,11 @@ npm run dev
 
 ```
 
-
+## 기술 스택
+- Next.JS (14버전)
+- TypeScript
+- Tailwind CSS
+- TanStack Query
 
 
 ## 할일 목록 페이지
