@@ -31,7 +31,7 @@ export const TodoItem = ({ id, name, isCompleted }: ITodo) => {
     });
     // 할 일의 할일 내용을 서버에 전송하는 함수
     const updateTodoTextMutation = useMutation({
-        mutationFn: () => updateTodo("ppinppini", id, checked, todo),
+        mutationFn: (updatedTodo: string) => updateTodo("ppinppini", id, checked, updatedTodo), // updatedTodo 사용
         onSuccess: () => {
             queryClient.invalidateQueries(); // 쿼리 갱신
         },
@@ -44,11 +44,11 @@ export const TodoItem = ({ id, name, isCompleted }: ITodo) => {
     };
 
     // 할 일 업데이트 후 서버에 요청 보내기
-    const handleTodoChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setTodo(e.target.value); // 로컬 todo 상태 업데이트
-        updateTodoTextMutation.mutate(); // 서버로 todo 상태 업데이트
+    const handleTodoChange = async (e: ChangeEvent<HTMLInputElement>) => {
+        const updatedTodo = e.target.value;
+        setTodo(updatedTodo); // 상태 업데이트
+        updateTodoTextMutation.mutate(updatedTodo); // 최신 todo 값으로 mutation 호출
     };
-
     return (
         <div className={`border-2 border-black rounded-3xl p-4 flex items-center gap-4 mb-4 ${checked ? "bg-[#EDE9FE]" : ""} ${pathName.startsWith(`/items/${id}`) ? "justify-center" : ""}`}>
             <span className="cursor-pointer " onClick={handleCheckToggle}>

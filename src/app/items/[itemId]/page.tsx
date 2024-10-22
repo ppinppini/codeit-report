@@ -7,7 +7,7 @@ import uploadImgBG from "../../assets/uploadI-image-background.png";
 import uploadImgBtn from "../../assets/upload-image-btn.png";
 import editBtn from "../../assets/edit.png";
 import deleteBtn from "../../assets/delete.png";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, Suspense, useEffect, useState } from "react";
 import imgEditBtn from "../../assets/imgEditBtn.png";
 import { useRouter } from "next/navigation";
 import { queryClient } from "@/app/config/ReactQueryProvider";
@@ -46,7 +46,6 @@ export default function Page({ params }: { params: { itemId: number } }) {
             }),
         onSuccess: async () => {
             await queryClient.invalidateQueries();
-            await todoQuery.refetch();
             router.push(`/`);
         },
         onError: () => alert("수정 실패!"),
@@ -82,7 +81,9 @@ export default function Page({ params }: { params: { itemId: number } }) {
 
     return (
         <main className="mt-3 relative flex flex-col">
-            <TodoItem {...todo} />
+            <Suspense fallback={<p>로딩 중...</p>}>
+                <TodoItem {...todo} />
+            </Suspense>
             <section className="flex flex-col gap-4 desktop:flex-row ">
                 <div className="bg-[#F8FAFC] rounded-2xl h-[311px] desktop:w-1/2 flex items-center justify-center relative">
                     <Image
@@ -93,7 +94,7 @@ export default function Page({ params }: { params: { itemId: number } }) {
                         decoding="async"
                         className=" w-full rounded-2xl"
                     />
-                    <input id="img-upload" type="file" onChange={handleImageChange} accept="image/jpg image/png image/jpeg" className="hidden" />
+                    <input id="img-upload" type="file" onChange={handleImageChange} accept="image/jpg, image/png, image/jpeg" className="hidden" />
                     <label htmlFor="img-upload">
                         {todo?.imageUrl ? (
                             <Image src={imgEditBtn} alt="uploadBtn" className="absolute bottom-4 right-4 cursor-pointer" />
@@ -107,7 +108,7 @@ export default function Page({ params }: { params: { itemId: number } }) {
                     {isEditing ? (
                         <textarea className="basis-11/12 bg-opacity-10 bg-transparent w-full placeholder:text-black" value={memo} onChange={(e) => setMemo(e.target.value)} placeholder={todo.memo} />
                     ) : (
-                        <p className="basis-11/12 bg-opacity-10 bg-transparent w-full placeholder:text-black" onClick={() => setIsEditing(!isEditing)}>
+                        <p className="basis-11/12 bg-opacity-10 bg-transparent w-full h-auto placeholder:text-black" onClick={() => setIsEditing(!isEditing)}>
                             {todo?.memo}
                         </p>
                     )}
