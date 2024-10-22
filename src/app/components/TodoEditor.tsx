@@ -25,11 +25,6 @@ export const TodoEditor = () => {
     const createTodoMutation = useMutation({
         mutationFn: () => {
             // 이미 같은 이름의 todo가 있는지 확인
-            const existingTodo = todosQuery?.data?.find((t: ITodo) => t.name === todo.trim());
-            if (existingTodo) {
-                return Promise.reject("중복된 할 일이 있습니다.");
-            }
-
             return createTodo(tenantId, {
                 id: Date.now(),
                 name: todo,

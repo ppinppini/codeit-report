@@ -15,18 +15,18 @@ import editCompleteBtn from "../../assets/edit-complete-btn.png";
 
 // 할 일 상세 페이지
 export default function Page({ params }: { params: { itemId: number } }) {
-    const router = useRouter();
     const { itemId } = params;
-    const [isEditing, setIsEditing] = useState(false);
-    const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
-    const [memo, setMemo] = useState("");
-    const [isModified, setModified] = useState(false);
-    // 할 일 상세 페이지의 할 일 불러오기
     const todoQuery = useQuery({
         queryKey: ["todo", itemId],
         queryFn: () => getTodo("ppinppini", itemId),
     });
     const todo = todoQuery?.data;
+    const router = useRouter();
+    const [isEditing, setIsEditing] = useState(false);
+    const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
+    const [memo, setMemo] = useState(todo?.memo);
+    const [isModified, setModified] = useState(false);
+    // 할 일 상세 페이지의 할 일 불러오기
     console.log(todo);
     // 할 일을 삭제하기 함수
     const deleteTodoMutation = useMutation({
